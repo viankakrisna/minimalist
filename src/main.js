@@ -5,7 +5,7 @@ import { navigate } from './mutators';
 const root = document.createElement('div');
 
 function render() {
-    renderer(e(App), root, root.lastChild);
+  renderer(e(App), root, root.lastChild);
 }
 
 subscribe(render);
@@ -15,6 +15,6 @@ document.body.appendChild(root);
 render();
 
 setState(
-    navigate(window.location.hash ? window.location.hash.replace('#', '') : '/')
+  navigate(window.location.hash ? window.location.hash.replace('#', '') : '/')
 );
 

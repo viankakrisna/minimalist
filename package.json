@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Project boilerplate",
   "scripts": {
-    "start": "webpack-dev-server --content-base build/",
-    "build": "webpack"
+    "start": "webpack-dev-server --progress",
+    "build": "webpack --progress -p"
   },
   "dependencies": {
     "google-material-color-palette-json": "1.1.2",

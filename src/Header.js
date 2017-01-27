@@ -1,32 +1,31 @@
-import {a,e,i,div,n} from './elements'
-import {menuOpen} from './mutators'
-import styled from './styled'
-import {colors} from './theme'
-import {getState, setState} from './state'
-import Link from './Link'
-function Header (props){
-  return div({className: props.className},
-     i({
-         className: 'material-icons menu-toggle', 
-         onClick: () => 
-           setState(menuOpen(!getState().menuOpen)
-         )}, 'menu'
-      ),
-     div({className: 'mobile-logo'}, 'Minimalist'),
-     div({
-         className: 'overlay', 
-         onClick: () => 
-           setState(menuOpen(false)
-         )}),
-       div({className: 'menu'},
-         e(Link, {to: '/'}, 'Home'),
-         e(Link, {to: '/counter'}, 'Counter'),
-         e(Link, {to: '/login'}, 'Login'),
-         e(Link, {to: '/register'}, 'Register')
-       )
-  )
+import { a, e, i, div, n } from './elements';
+import { menuOpen } from './mutators';
+import styled from './styled';
+import { colors } from './theme';
+import { getState, setState } from './state';
+import Link from './Link';
+function Header(props) {
+  return div(
+    { className: props.className },
+    i(
+      {
+        className: 'material-icons menu-toggle',
+        onClick: () => setState(menuOpen(!getState().menuOpen))
+      },
+      'menu'
+    ),
+    div({ className: 'mobile-logo' }, 'Minimalist'),
+    div({ className: 'overlay', onClick: () => setState(menuOpen(false)) }),
+    div(
+      { className: 'menu' },
+      e(Link, { to: '/' }, 'Home'),
+      e(Link, { to: '/counter' }, 'Counter'),
+      e(Link, { to: '/login' }, 'Login'),
+      e(Link, { to: '/register' }, 'Register')
+    )
+  );
 }
-const headerHeight = () => '3.5em'
+const headerHeight = () => '3.5em';
 export default styled(Header)`
   & {
     position: fixed;
@@ -110,4 +109,5 @@ export default styled(Header)`
       pointer-events: ${props => getState().menuOpen ? 'visible' : 'none'}
     }
   }
-`
+`;
+

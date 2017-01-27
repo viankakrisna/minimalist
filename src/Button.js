@@ -1,15 +1,8 @@
-import {button} from './elements'
-import styled from './styled'
-export default styled(
-  function Button({className, children, ...props}){
-    return button({
-      className,
-        ...props
-      }, 
-      children
-   )
-  }
-)`
+import { button } from './elements';
+import styled from './styled';
+export default styled(function Button({ className, children, ...props }) {
+  return button({ className, ...props }, children);
+})`
 & {
   background: ${props => props.bg};
   color: ${props => props.color || 'white'};
@@ -36,4 +29,5 @@ export default styled(
   opacity: 0.5;
   pointer-events: none;
 }
-`
+`;
+

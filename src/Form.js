@@ -1,17 +1,18 @@
-import {form} from './elements'
-import {colors} from './theme'
-import styled from './styled'
+import { form } from './elements';
+import { colors } from './theme';
+import styled from './styled';
 
-export default styled(
-  function Form(props){
-    return form({...props, onSubmit: (event) => {
+export default styled(function Form(props) {
+  return form({
+    ...props,
+    onSubmit: event => {
       event.preventDefault();
-      if (typeof props.onSubmit === 'function'){
+      if (typeof props.onSubmit === 'function') {
         props.onSubmit();
       }
-    }})
-  }
-)`
+    }
+  });
+})`
   & {
     max-width: 100%;
     width: 320px;
@@ -43,10 +44,11 @@ export default styled(
   }
   & input:focus {
     outline: none;
-    border-bottom: 1px solid ${()=> colors.blue.shade_500};
+    border-bottom: 1px solid ${() => colors.blue.shade_500};
   }
 
   & fieldset > *:first-child {
     margin-top: 0;
   }
-`
+`;
+
