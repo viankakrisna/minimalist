@@ -1,11 +1,11 @@
-import { e, n, p, h1, ul, li, a, div, h2 } from './elements';
+import { e, n, h1, div } from './elements';
 import styled from './styled';
 import Counter from './Counter';
 import Header from './Header';
 import Login from './Login';
 import Home from './Home';
 import Register from './Register';
-import { getState, setState } from './state';
+import { getState } from './state';
 import { colors } from './theme';
 import Typography from 'typography';
 import typographyTheme from 'typography-theme-bootstrap';

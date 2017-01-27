@@ -1,4 +1,4 @@
-import { a, e, i, div, n } from './elements';
+import { e, i, div } from './elements';
 import { menuOpen } from './mutators';
 import styled from './styled';
 import { colors } from './theme';
