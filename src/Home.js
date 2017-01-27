@@ -3,7 +3,10 @@ import { div, p, h2, ul, li, n, h1, a } from './elements';
 export default function Home(peops) {
   return div(
     { className: 'page' },
-    div({ className: 'page-header' }, h1(n, 'Welcome to the Minimalist!')),
+    div(
+      { className: 'page-header' },
+      h1(n, 'Welcome to the example page of Minimalist!')
+    ),
     div(
       { className: 'page-content' },
       p(
