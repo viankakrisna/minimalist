@@ -4,7 +4,7 @@
   "description": "Project boilerplate",
   "scripts": {
     "start": "webpack-dev-server --content-base build/",
-    "build": "webpack -p"
+    "build": "webpack"
   },
   "dependencies": {
     "google-material-color-palette-json": "1.1.2",

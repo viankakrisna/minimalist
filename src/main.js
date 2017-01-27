@@ -12,11 +12,9 @@ subscribe(render);
 
 document.body.appendChild(root);
 
+render();
+
 setState(
     navigate(window.location.hash ? window.location.hash.replace('#', '') : '/')
 );
-
-render();
-
-localStorage.setItem('state', JSON.stringify({}));
 
