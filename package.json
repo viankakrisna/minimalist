@@ -4,7 +4,8 @@
   "description": "Project boilerplate",
   "scripts": {
     "start": "webpack-dev-server --progress",
-    "build": "webpack --progress -p"
+    "build": "webpack --progress -p",
+    "deploy": "webpack --progress -p && git commit -am \"$m\" && git push origin master" 
   },
   "dependencies": {
     "google-material-color-palette-json": "1.1.2",

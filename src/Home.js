@@ -25,7 +25,6 @@ export default function Home(peops) {
           n,
           `styled-components - without html helper (.eg styled.div) - see ./styled.js`
         ),
-        li(n, `react-hyperscripts - just a factory - see ./elements.js`),
         li(n, `preact instead of react`)
       ),
       p(
