@@ -1,14 +1,14 @@
-import { e, n, h1, div } from './elements';
-import styled from './styled';
-import Counter from './Counter';
-import Header from './Header';
-import Login from './Login';
-import Home from './Home';
-import Register from './Register';
-import { getState } from './state';
-import { colors } from './theme';
-import Typography from 'typography';
-import typographyTheme from 'typography-theme-bootstrap';
+import { e, n, h1, div } from "./elements";
+import styled from "./styled";
+import Counter from "./Counter";
+import Header from "./Header";
+import Login from "./Login";
+import Home from "./Home";
+import Register from "./Register";
+import { getState } from "./state";
+import { colors } from "./theme";
+import Typography from "typography";
+import typographyTheme from "typography-theme-bootstrap";
 const typography = new Typography(typographyTheme);
 const Match = props =>
   getState().location.pathname === props.pathname ? props.children[0] : null;
@@ -17,19 +17,19 @@ const App = styled(function App(props) {
   return div(
     { className: props.className },
     e(Header),
-    e(Match, { pathname: '/' }, e(Home)),
+    e(Match, { pathname: "/" }, e(Home)),
     e(
       Match,
-      { pathname: '/counter' },
+      { pathname: "/counter" },
       div(
-        { className: 'page' },
-        div({ className: 'page-header' }, h1(n, 'Counter Example')),
-        div({ className: 'page-content' }, e(Counter))
+        { className: "page" },
+        div({ className: "page-header" }, h1(n, "Counter Example")),
+        div({ className: "page-content" }, e(Counter))
       )
     ),
-    e(Match, { pathname: '/login' }, e(Login)),
-    e(Match, { pathname: '/register' }, e(Register)),
-    e(Match, { pathname: '/*' }, e(Register))
+    e(Match, { pathname: "/login" }, e(Login)),
+    e(Match, { pathname: "/register" }, e(Register)),
+    e(Match, { pathname: "/*" }, e(Register))
   );
 })`
 body {
@@ -56,7 +56,7 @@ ${() => typography.toString()}
   margin-bottom: -3.5em;
   color: white;
   text-align: center;
-  padding: 5em 0 7.5em;
+  padding: 5em 1em 7.5em;
 }
 & .page-content {
   width: 640px;
