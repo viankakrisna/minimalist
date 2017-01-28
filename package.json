@@ -11,8 +11,7 @@
   "dependencies": {
     "google-material-color-palette-json": "1.1.2",
     "preact": "7.2.0",
-    "typography": "0.15.8",
-    "typography-theme-bootstrap": "0.15.1"
+    "typography": "0.15.8"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",

@@ -1,34 +1,33 @@
-import { div, span, n, p, hr, button, table, tr, td, e, br } from './elements';
-import styled from './styled';
-import { colors } from './theme';
+import { div, n, p, e, br } from "./elements";
+import { colors } from "./theme";
 import {
   increment,
   decrement,
   asyncDecrement,
   asyncIncrement
-} from './mutators';
-import { setState, getState } from './state';
-import Button from './Button';
+} from "./mutators";
+import { setState, getState } from "./state";
+import Button from "./Button";
 
 const Counter = props => div(
-  { style: { textAlign: 'center' } },
-  p({ style: { fontSize: '72px', lineHeight: '144px' } }, getState().counter),
+  { style: { textAlign: "center" } },
+  p({ style: { fontSize: "72px", lineHeight: "144px" } }, getState().counter),
   e(
     Button,
     { bg: colors.blue.shade_700, onClick: e => setState(increment(1)) },
-    'Increment'
+    "Increment"
   ),
   e(
     Button,
     { bg: colors.red.shade_700, onClick: e => setState(decrement(1)) },
-    'Decrement'
+    "Decrement"
   ),
   br(),
   e(
     Button,
     {
       bg: colors.green.shade_700,
-      color: 'white',
+      color: "white",
       onClick: e => {
         setState(asyncIncrement.loading());
         setTimeout(
@@ -40,13 +39,13 @@ const Counter = props => div(
       },
       disabled: getState().loading.asyncIncrement
     },
-    'Async Increment'
+    "Async Increment"
   ),
   e(
     Button,
     {
       bg: colors.yellow.shade_700,
-      color: 'black',
+      color: "black",
       onClick: e => {
         setState(asyncDecrement.loading());
         setTimeout(
@@ -58,9 +57,9 @@ const Counter = props => div(
       },
       disabled: getState().loading.asyncDecrement
     },
-    'Async Decrement'
+    "Async Decrement"
   ),
-  getState('list').map(item => div(n, item)).reverse()
+  getState("list").map(item => div(n, item)).reverse()
 );
 
 export default Counter;
