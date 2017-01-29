@@ -6,8 +6,11 @@ module.exports = setInitialState(
     counter: 0,
     list: [],
     loading: {},
+    todos: [],
+    currentTodoInput: '',
+    addTodoMessage: false,
     location: { ...window.location },
-    ...(void JSON.parse(localStorage.getItem('state')))
+    ...JSON.parse(localStorage.getItem('state'))
   },
   [ saveHistoryOfState, lastMutated ]
 );

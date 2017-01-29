@@ -19,9 +19,9 @@ function Header(props) {
     div(
       { className: 'menu' },
       e(Link, { to: '/' }, 'Home'),
-      // e(Link, { to: '/login' }, 'Login'),
       // e(Link, { to: '/register' }, 'Register')
-      e(Link, { to: '/counter' }, 'Counter')
+      e(Link, { to: '/counter' }, 'Counter'),
+      e(Link, { to: '/todo' }, 'Todo')
     )
   );
 }

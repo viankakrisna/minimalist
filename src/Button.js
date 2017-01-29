@@ -11,6 +11,15 @@ export default styled(function Button({ className, children, ...props }) {
   transition: 250ms;
   cursor: pointer;
   padding: 0.5em 1em;
+  font-size: ${props => {
+  switch (true) {
+    case props.small:
+      return '0.7em';
+    default:
+      return '1em';
+  }
+}};
+  line-height: 1em;
   width: ${props => props.block ? '100%' : 'auto'};
   display: ${props => props.block ? 'block' : 'inline-block'};
   text-transform: uppercase;

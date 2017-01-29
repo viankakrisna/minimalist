@@ -140,11 +140,14 @@ export function setInitialState(initialState, middleWares) {
   return {
     getState(key) {
       if (key) {
+        if (typeof state[key] === 'undefined') {
+          throw new Error(`getState could not find your ${key} in the store!`);
+        }
         return state[key];
       }
       return state;
     },
-    setState(mutator) {
+    setState(mutator, cb) {
       const mutatorIsFunction = typeof mutator === 'function';
       const mutatorName = mutatorIsFunction ? mutator.name : false;
       const mutation = mutatorIsFunction ? mutator(state) : mutator;
@@ -159,6 +162,10 @@ export function setInitialState(initialState, middleWares) {
         )
       );
       subscribers.forEach(subscriber => subscriber());
+      if (typeof cb === 'function') {
+        return cb(state);
+      }
+      return new Promise(resolve => resolve(state));
     },
     subscribe(subscriber) {
       if (typeof subscriber === 'function') {
