@@ -1,5 +1,5 @@
 import { e, n, h1, div } from './elements';
-import styled from './styled';
+import styled, { keyframes } from './styled';
 import Counter from './Counter';
 import Header from './Header';
 import Login from './Login';
@@ -63,7 +63,16 @@ const typography = new Typography({
 });
 const Match = props =>
   getState().location.pathname === props.pathname ? props.children[0] : null;
-
+const fadeIn = keyframes`
+  0% {
+    transform: scale(0);
+    transform-origin: top left;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: top left;
+  }
+`;
 const App = styled(function App(props) {
   return div(
     { className: props.className },
@@ -100,7 +109,6 @@ ${() => typography.toString()}
   background: #f1f1f1;
   min-height: 100vh;
 }
-
 & .page-header {
   background: ${() => colors.blue.shade_800};
   overflow: hidden;
@@ -116,6 +124,7 @@ ${() => typography.toString()}
   border-radius: 2px;
   padding: 1em;
   margin: 1em auto;
+  animation: ${fadeIn} 250ms;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 @media (max-width: 767px){

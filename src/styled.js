@@ -1,15 +1,16 @@
-import { e } from "./elements";
+import { e } from './elements';
 
 //take the exp and props variable, and create a reducer function for that.
-function createRawCSSReducer(exp, props) {
+function interpolateExpressionReducer(exp, props) {
   //combine the array of css.raw to a string, and invoke any function with props
   return function rawCSSReducer(res, string, i) {
-    if (typeof exp[i] === "function") {
+    if (typeof exp[i] === 'function') {
       res += string + exp[i](props);
       return res;
     }
-    if (exp[1]) {
+    if (exp[i]) {
       res += string + exp[i];
+      return res;
     }
     res += string;
     return res;
@@ -23,38 +24,50 @@ export default function styled(Component) {
     //return a named function, easier to debug in the stack trace
     return function styledComponent(props) {
       const interpolatedCSS = css.raw.reduce(
-        createRawCSSReducer(exp, props),
-        ""
+        interpolateExpressionReducer(exp, props),
+        ''
       );
 
       //use the component function name, else just use styled prefix
       const className = [
-        Component.name || "styled",
+        Component.name || 'styled',
         //generates a unique identifier based on the css string
         hashCode(interpolatedCSS)
-      ].join("_");
+      ].join('_');
 
-      //only append the style in the head if it's not there
-      const styleAppended = document.getElementById(className);
-      if (!styleAppended) {
-        //create the style node
-        const style = document.createElement("style");
-        style.innerHTML = interpolatedCSS.replace(/\&/g, "." + className);
-        style.id = className;
-
-        //append it!
-        document.head.appendChild(style);
-      }
+      renderStyle(className, interpolatedCSS);
 
       return e(Component, { ...props, className });
     };
   };
 }
 
+export function keyframes(css) {
+  const interpolated = css.raw.reduce(interpolateExpressionReducer);
+  const hash = [ 'keyframes', hashCode(interpolated) ].join('_');
+  const style = [ '@keyframes ', hash, '{', interpolated, '}' ].join('');
+  renderStyle(hash, style);
+  return hash;
+}
+
+function renderStyle(className, interpolatedCSS) {
+  //only append the style in the head if it's not there
+  const styleAppended = document.getElementById(className);
+  if (!styleAppended) {
+    //create the style node
+    const style = document.createElement('style');
+    style.innerHTML = interpolatedCSS.replace(/&/g, '.' + className);
+    style.id = className;
+
+    //append it!
+    document.head.appendChild(style);
+  }
+}
+
 function hashCode(str) {
   return Math.abs(
     str
-      .split("")
+      .split('')
       .reduce(
         (res, currentChar) => (res << 6) - res + currentChar.charCodeAt(0),
         0

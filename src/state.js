@@ -1,4 +1,6 @@
 import { setInitialState } from './lib';
+import { saveHistoryOfState, lastMutated } from './middlewares';
+
 module.exports = setInitialState(
   {
     counter: 0,
@@ -9,18 +11,4 @@ module.exports = setInitialState(
   },
   [ saveHistoryOfState, lastMutated ]
 );
-
-//middleware for storing history
-const stateHistory = [];
-function saveHistoryOfState(state) {
-  stateHistory.push(state);
-  localStorage.setItem('state', JSON.stringify(state));
-  return state;
-}
-function lastMutated(state, mutatorName, mutation) {
-  state.lastMutator = mutatorName;
-  state.lastMutated = Date.now();
-  console.log(mutatorName, mutation);
-  return state;
-}
 
