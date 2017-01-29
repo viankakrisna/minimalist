@@ -35,6 +35,7 @@ export default styled(Header)`
     background: ${props => colors.blue.shade_900};
     height: ${headerHeight};
     line-height: 1.5em;
+    z-index: 10;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
   & a {

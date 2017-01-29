@@ -59,12 +59,13 @@ export const addTodo = newTodo => function ADD_TODO(state) {
   return { todos: state.todos.concat([ newTodo ]), currentTodoInput: '' };
 };
 
-export const todoErrorMessage = errorMessage => function ADD_TODO_ERROR(state) {
-  return { todoMessage: { type: 'error', message: errorMessage } };
-};
+export const todoErrorMessage = errorMessage =>
+  function TODO_ERROR_MESSAGE(state) {
+    return { todoMessage: { type: 'error', message: errorMessage } };
+  };
 
 export const todoSuccessMessage = successMessage =>
-  function ADD_TODO_SUCCESS(state) {
+  function TODO_SUCCESS_MESSAGE(state) {
     return { todoMessage: { type: 'success', message: successMessage } };
   };
 

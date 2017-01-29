@@ -9,7 +9,7 @@ import Todo from './Todo';
 import { colors } from './theme';
 import typography from './typography';
 import Match from './Match';
-import { zoomIn } from './animation';
+import { zoomIn, slideInUp } from './animation';
 
 const App = styled(function App(props) {
   return div(
@@ -35,7 +35,6 @@ ${typography.toString()}
 
 &{
   padding-top: 3.5em;
-  overflow: auto;
   background: #f1f1f1;
   min-height: 100vh;
 }
@@ -46,6 +45,8 @@ ${typography.toString()}
   color: white;
   text-align: center;
   padding: 5em 1em 7.5em;
+  animation: ${zoomIn} 250ms;
+  transform-origin: top center;
 }
 & .page-content {
   width: 640px;
@@ -54,8 +55,8 @@ ${typography.toString()}
   border-radius: 2px;
   padding: 1em;
   margin: 1em auto;
-  animation: ${zoomIn} 250ms;
-  transform-origin: top left;
+  animation: ${slideInUp} 500ms;
+  transform-origin: bottom center;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 @media (max-width: 767px){
