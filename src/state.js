@@ -8,7 +8,7 @@ module.exports = setInitialState(
     loading: {},
     todos: [],
     currentTodoInput: '',
-    addTodoMessage: false,
+    addTodoMessage: {},
     location: { ...window.location },
     ...JSON.parse(localStorage.getItem('state'))
   },

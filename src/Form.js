@@ -15,7 +15,7 @@ export default styled(function Form(props) {
 })`
   & {
     max-width: 100%;
-    width: 320px;
+    width: ${props => props.small ? '320px' : '100%'};
     margin-left: auto;
     margin-right: auto;
   }

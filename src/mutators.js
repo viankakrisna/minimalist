@@ -73,10 +73,10 @@ export const destroyTodo = todoId => function DESTROY_TODO(state) {
 };
 
 export const currentTodoInput = text => function CURRENT_TODO_INPUT(state) {
-  return { currentTodoInput: text, addTodoMessage: false };
+  return { currentTodoInput: text, addTodoMessage: {} };
 };
 
 export const clearAddTodoMessage = () => function CURRENT_TODO_INPUT(state) {
-  return { addTodoMessage: false };
+  return { addTodoMessage: {} };
 };
 
