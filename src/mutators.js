@@ -59,24 +59,35 @@ export const addTodo = newTodo => function ADD_TODO(state) {
   return { todos: state.todos.concat([ newTodo ]), currentTodoInput: '' };
 };
 
-export const addTodoError = errorMessage => function ADD_TODO_ERROR(state) {
-  return { addTodoMessage: { type: 'error', message: errorMessage } };
+export const todoErrorMessage = errorMessage => function ADD_TODO_ERROR(state) {
+  return { todoMessage: { type: 'error', message: errorMessage } };
 };
 
-export const addTodoSuccess = successMessage =>
+export const todoSuccessMessage = successMessage =>
   function ADD_TODO_SUCCESS(state) {
-    return { addTodoMessage: { type: 'success', message: successMessage } };
+    return { todoMessage: { type: 'success', message: successMessage } };
   };
 
 export const destroyTodo = todoId => function DESTROY_TODO(state) {
   return { todos: state.todos.filter(todo => todo.id !== todoId) };
 };
 
-export const currentTodoInput = text => function CURRENT_TODO_INPUT(state) {
-  return { currentTodoInput: text, addTodoMessage: {} };
+export const completeTodo = todoId => function DESTROY_TODO(state) {
+  return {
+    todos: state.todos.map(todo => {
+      if (todo.id === todoId) {
+        return { ...todo, complete: true };
+      }
+      return todo;
+    })
+  };
 };
 
-export const clearAddTodoMessage = () => function CURRENT_TODO_INPUT(state) {
-  return { addTodoMessage: {} };
+export const currentTodoInput = text => function CURRENT_TODO_INPUT(state) {
+  return { currentTodoInput: text, todoMessage: {} };
+};
+
+export const clearTodoMessage = () => function CURRENT_TODO_INPUT(state) {
+  return { todoMessage: {} };
 };
 
