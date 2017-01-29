@@ -1,7 +1,7 @@
 import { e } from './elements';
 
 //take the exp and props variable, and create a reducer function for that.
-function interpolateExpressionReducer(exp, props) {
+function createRawCSSReducer(exp, props) {
   //combine the array of css.raw to a string, and invoke any function with props
   return function rawCSSReducer(res, string, i) {
     if (typeof exp[i] === 'function') {
@@ -24,7 +24,7 @@ export default function styled(Component) {
     //return a named function, easier to debug in the stack trace
     return function styledComponent(props) {
       const interpolatedCSS = css.raw.reduce(
-        interpolateExpressionReducer(exp, props),
+        createRawCSSReducer(exp, props),
         ''
       );
 
@@ -43,7 +43,7 @@ export default function styled(Component) {
 }
 
 export function keyframes(css) {
-  const interpolated = css.raw.reduce(interpolateExpressionReducer);
+  const interpolated = css.raw.reduce(createRawCSSReducer());
   const hash = [ 'keyframes', hashCode(interpolated) ].join('_');
   const style = [ '@keyframes ', hash, '{', interpolated, '}' ].join('');
   renderStyle(hash, style);
