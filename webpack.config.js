@@ -1,5 +1,5 @@
 var path = require('path');
-var webpack = require('webpack');
+// var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var loaders = [
@@ -12,9 +12,13 @@ var loaders = [
 ];
 
 module.exports = {
-  // devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
   entry: path.resolve('src', 'main.js'),
-  output: { filename: '[name].js', publicPath: '.' },
+  output: {
+    path: path.resolve('build'),
+    filename: '[name].js',
+    publicPath: '/'
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve('src', 'index.html'),
