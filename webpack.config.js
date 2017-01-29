@@ -17,7 +17,7 @@ module.exports = {
   output: {
     path: path.resolve('build'),
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: '.'
   },
   plugins: [
     new HtmlWebpackPlugin({
