@@ -14,7 +14,7 @@ function Header(props) {
       },
       'menu'
     ),
-    div({ className: 'mobile-logo' }, 'Minimalist'),
+    e(Link, { className: 'logo', to: '/' }, 'Minimalist'),
     div({ className: 'overlay', onClick: () => setState(menuOpen(false)) }),
     div(
       { className: 'menu' },
@@ -32,34 +32,50 @@ export default styled(Header)`
     top: 0;
     left: 0;
     right: 0;
-    background: ${props => colors.blue.shade_900};
+    transition: 250ms;
+    background: ${colors.blue.shade_800};
     height: ${headerHeight};
     line-height: 1.5em;
     z-index: 10;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    ${() =>
+  getState('scrolled')
+    ? 'box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);'
+    : ''}
+    }
+  & .logo {
+    float: left;
+    padding: 1rem;
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
   }
-  & a {
+  & .logo:hover {
+    text-decoration: none;
+  }
+  & .menu a {
     color: white;
     padding: 1em;
     text-decoration: none;
     display: inline-block;
     transition: 250ms;
+    box-shadow: inset 0 0 0 0 white;
   }
-  & a.active,
-  & a:hover{
-    background: rgba(0,0,0,0.25)
+  & .menu a.active,
+  & .menu a:hover{
+    // background: rgba(0,0,0,0.25);
+    box-shadow: inset 0 -0.2em 0 0 white;
   }
-  & .menu-toggle,
-  & .mobile-logo {
+  & .menu-toggle{
     display: none;
   }
   @media (min-width: 768px){
     & {
-      text-align: center;
+      text-align: right;
+      padding: 0 1em;
     }
   }
   @media (max-width: 767px){
-    & .mobile-logo {
+    & .logo {
       display: block;
       position: absolute;
       top: 0;
@@ -73,6 +89,8 @@ export default styled(Header)`
       width: 10em;
       box-sizing: border-box;
       color: white;
+      float: none;
+      font-size: 1em;
     }
     & .menu-toggle {
       color: white;

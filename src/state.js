@@ -9,6 +9,7 @@ module.exports = setInitialState(
     todos: [],
     currentTodoInput: '',
     todoMessage: {},
+    scrolled: false,
     location: { ...window.location },
     ...JSON.parse(localStorage.getItem('state'))
   },

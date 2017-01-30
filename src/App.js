@@ -41,10 +41,10 @@ ${typography.toString()}
 & .page-header {
   background: ${colors.blue.shade_800};
   overflow: hidden;
-  margin-bottom: -3.5em;
+  margin-bottom: -8.5em;
   color: white;
   text-align: center;
-  padding: 5em 1em 7.5em;
+  padding: 4em 1em 8em;
   animation: ${zoomIn} 250ms;
   transform-origin: top center;
 }
@@ -53,7 +53,7 @@ ${typography.toString()}
   max-width: 100%;
   background: white;
   border-radius: 2px;
-  padding: 1em;
+  padding: 1.5em;
   margin: 1em auto;
   animation: ${slideInUp} 500ms;
   transform-origin: bottom center;

@@ -55,8 +55,12 @@ export const asyncIncrement = {
   }
 };
 
+let id = 0;
 export const addTodo = newTodo => function ADD_TODO(state) {
-  return { todos: state.todos.concat([ newTodo ]), currentTodoInput: '' };
+  return {
+    todos: state.todos.concat([ { ...newTodo, id: id++ } ]),
+    currentTodoInput: ''
+  };
 };
 
 export const todoErrorMessage = errorMessage =>

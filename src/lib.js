@@ -134,9 +134,17 @@ export function elements(createElement, additionalElements = []) {
     );
 }
 
-export function setInitialState(initialState, middleWares) {
+const middlewareReducer = (mutatorName, mutation) => (state, middleware) => {
+  return middleware(state, mutatorName, mutation);
+};
+
+export function setInitialState(initialState, middlewares) {
   const subscribers = [];
   const state = initialState;
+
+  const render = () => {
+    subscribers.forEach(subscriber => subscriber());
+  };
   return {
     getState(key) {
       if (key) {
@@ -148,24 +156,21 @@ export function setInitialState(initialState, middleWares) {
       return state;
     },
     setState(mutator, cb) {
-      const mutatorIsFunction = typeof mutator === 'function';
-      const mutatorName = mutatorIsFunction ? mutator.name : false;
-      const mutation = mutatorIsFunction ? mutator(state) : mutator;
-      Object.assign(state, { ...state, ...mutation });
-      Object.assign(
-        state,
-        middleWares.reduce(
-          function(state, middleWare) {
-            return middleWare(state, mutatorName, mutation);
-          },
-          { ...state }
-        )
-      );
-      subscribers.forEach(subscriber => subscriber());
       if (typeof cb === 'function') {
         return cb(state);
       }
-      return new Promise(resolve => resolve(state));
+      return new Promise(resolve => {
+        const mutatorIsFunction = typeof mutator === 'function';
+        const mutatorName = mutatorIsFunction ? mutator.name : false;
+        const mutation = mutatorIsFunction ? mutator(state) : mutator;
+        Object.assign(
+          state,
+          mutation,
+          middlewares.reduce(middlewareReducer(mutatorName, mutation), state)
+        );
+        render(mutator, cb);
+        resolve(state);
+      });
     },
     subscribe(subscriber) {
       if (typeof subscriber === 'function') {
@@ -176,6 +181,30 @@ export function setInitialState(initialState, middleWares) {
       if (typeof subscriber === 'function') {
         subscribers.splice(subscribers.indexOf(subscriber), 1);
       }
+    }
+  };
+}
+
+function throttle(fn, threshhold, scope) {
+  threshhold || (threshhold = 250);
+  var last, deferTimer;
+  return function() {
+    var context = scope || this;
+
+    var now = +new Date(), args = arguments;
+    if (last && now < last + threshhold) {
+      // hold on to it
+      clearTimeout(deferTimer);
+      deferTimer = setTimeout(
+        function() {
+          last = now;
+          fn.apply(context, args);
+        },
+        threshhold
+      );
+    } else {
+      last = now;
+      fn.apply(context, args);
     }
   };
 }
