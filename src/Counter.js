@@ -14,7 +14,11 @@ const Counter = props => div(
   div({ className: 'page-header' }, h1(n, 'Counter Example')),
   div(
     { className: 'page-content', style: { textAlign: 'center' } },
-    p({ style: { fontSize: '72px', lineHeight: '144px' } }, getState().counter),
+    p(n, 'Current counter:'),
+    p(
+      { style: { fontSize: '72px', lineHeight: '1em', marginBottom: '0.5em' } },
+      getState().counter
+    ),
     e(
       Button,
       { bg: colors.blue.shade_700, onClick: e => setState(increment(1)) },

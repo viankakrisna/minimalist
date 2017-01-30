@@ -63,7 +63,7 @@ export default styled(Header)`
   & .menu a.active,
   & .menu a:hover{
     // background: rgba(0,0,0,0.25);
-    box-shadow: inset 0 -0.2em 0 0 white;
+    box-shadow: inset 0 -0.25em 0 0 white;
   }
   & .menu-toggle{
     display: none;
