@@ -5,6 +5,7 @@ import Header from './Header';
 import Login from './Login';
 import Home from './Home';
 import Register from './Register';
+import Tumblr from './Tumblr';
 import Todo from './Todo';
 import { colors } from './theme';
 import typography from './typography';
@@ -18,6 +19,7 @@ const App = styled(function App(props) {
     e(Match, { pathname: '/' }, e(Home)),
     e(Match, { pathname: '/counter' }, e(Counter)),
     e(Match, { pathname: '/login' }, e(Login)),
+    e(Match, { pathname: '/tumblr' }, e(Tumblr)),
     e(Match, { pathname: '/register' }, e(Register)),
     e(Match, { pathname: '/todo' }, e(Todo))
   );

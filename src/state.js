@@ -10,6 +10,10 @@ module.exports = setInitialState(
     currentTodoInput: '',
     todoMessage: {},
     scrolled: false,
+    tumblrMessage: '',
+    tumblrs: [],
+    tumblrList: [],
+    tumblrSearchForm: {},
     location: { ...window.location },
     ...JSON.parse(localStorage.getItem('state'))
   },

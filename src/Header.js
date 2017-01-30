@@ -19,7 +19,7 @@ function Header(props) {
     div(
       { className: 'menu' },
       e(Link, { to: '/' }, 'Home'),
-      // e(Link, { to: '/register' }, 'Register')
+      e(Link, { to: '/tumblr' }, 'Tumblr'),
       e(Link, { to: '/counter' }, 'Counter'),
       e(Link, { to: '/todo' }, 'Todo')
     )

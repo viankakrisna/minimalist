@@ -155,10 +155,7 @@ export function setInitialState(initialState, middlewares) {
       }
       return state;
     },
-    setState(mutator, cb) {
-      if (typeof cb === 'function') {
-        return cb(state);
-      }
+    setState(mutator) {
       return new Promise(resolve => {
         const mutatorIsFunction = typeof mutator === 'function';
         const mutatorName = mutatorIsFunction ? mutator.name : false;
@@ -168,7 +165,7 @@ export function setInitialState(initialState, middlewares) {
           mutation,
           middlewares.reduce(middlewareReducer(mutatorName, mutation), state)
         );
-        render(mutator, cb);
+        render(mutator);
         resolve(state);
       });
     },
