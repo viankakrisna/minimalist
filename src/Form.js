@@ -51,4 +51,8 @@ export default styled(function Form(props) {
   & fieldset > *:first-child {
     margin-top: 0;
   }
+  & [disabled] input,
+  & input[disabled]{
+    background: transparent;
+  }
 `;

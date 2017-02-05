@@ -2,14 +2,14 @@ import { div, n, input, e, ul, li, img, h1, fieldset } from './elements';
 import Form from './Form';
 import { cardMixin } from './mixins';
 import { colors } from './theme';
+import { setState, getState } from './state';
+import styled from './styled';
 import {
   tumblrSearch,
   tumblrErrorMessage,
   tumblrMessageClear,
   tumblrSearchFormChange
 } from './mutators';
-import { setState, getState } from './state';
-import styled from './styled';
 import Button from './Button';
 
 const TumblrMessage = styled(function TumblrMessage({ className }) {
@@ -70,7 +70,7 @@ const TumblrForm = styled(function TumblrForm(props) {
           bg: colors.blue.shade_700,
           disabled: getState('tumblrSearchLoading'),
           onClick: event =>
-            getState('tumblrSearchForm')
+            getState('tumblrSearchForm').query.length
               ? setState(tumblrSearch(getState('tumblrSearchForm')))
               : setState(tumblrErrorMessage('You need to input your tumblr!'))
         },
@@ -84,15 +84,20 @@ const TumblrForm = styled(function TumblrForm(props) {
  }
 `;
 
-const TumblrList = styled(function TumblrList({ className }) {
-  return ul(
-    { className },
-    getState('tumblrList').map(tumblr =>
-      li(
+function mapTumblrList(tumblr) {
+  return tumblr.photos || tumblr.body
+    ? li(
         { key: tumblr.id },
-        div(n, tumblr.photos ? img({ src: tumblr.photos[0].original_size.url }) : null, tumblr.body)
-      ))
-  );
+        Array.isArray(tumblr.photos)
+          ? tumblr.photos.map(photo => img({ key: photo.id, src: photo.original_size.url }))
+          : null,
+        tumblr.body
+      )
+    : null;
+}
+
+const TumblrList = styled(function TumblrList({ className }) {
+  return ul({ className }, getState('tumblrList').map(mapTumblrList).filter(Boolean));
 })`
   & {
     display: block;

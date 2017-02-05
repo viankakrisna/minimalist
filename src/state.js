@@ -14,9 +14,9 @@ module.exports = setInitialState(
     tumblrs: [],
     tumblrList: [],
     tumblrSearchForm: {},
+    tumblrSearchLoading: false,
     location: { ...window.location },
     ...JSON.parse(localStorage.getItem('state'))
   },
-  [ saveHistoryOfState, lastMutated ]
+  [saveHistoryOfState, lastMutated]
 );
-

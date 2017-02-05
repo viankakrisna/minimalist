@@ -1,5 +1,5 @@
 {
-  "name": "webpackbin-project",
+  "name": "minimalist-boilerplate",
   "version": "1.0.0",
   "description": "Project boilerplate",
   "scripts": {
@@ -20,6 +20,6 @@
     "webpack": "1.12.13",
     "webpack-dev-server": "^1.16.2"
   },
-  "author": "WebpackBin",
+  "author": "Ade Viankakrisna Fadlil",
   "license": "ISC"
 }

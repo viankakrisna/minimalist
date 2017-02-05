@@ -92,7 +92,7 @@ export const currentTodoInput = text => function CURRENT_TODO_INPUT(state) {
   return { currentTodoInput: text, todoMessage: {} };
 };
 
-export const clearTodoMessage = () => function CURRENT_TODO_INPUT(state) {
+export const clearTodoMessage = () => function CLEAR_TODO_MESSAGE(state) {
   return { todoMessage: {} };
 };
 
@@ -111,3 +111,18 @@ export const tumblrSearch = q => function TUMBLR_SEARCH(state) {
 
   return { tumblrSearchLoading: true };
 };
+
+export const tumblrErrorMessage = errorMessage => function TUMBLR_ERROR_MESSAGE(state) {
+  return { tumblrMessage: { type: 'error', message: errorMessage } };
+};
+
+export const tumblrMessageClear = () =>
+  createEmptyObjectMutator({ name: 'CLEAR_TUMBLR_MESSAGE', key: 'tumblrMessage' });
+
+function createEmptyObjectMutator({ name, key }) {
+  const emptyObjectMutator = state => {
+    return { [key]: {} };
+  };
+  emptyObjectMutator.name = name;
+  return emptyObjectMutator;
+}
