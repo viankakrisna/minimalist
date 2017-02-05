@@ -8,9 +8,13 @@ var PROTOCOL = process.env.PROTOCOL || 'http';
 var ADDRESS = `${PROTOCOL}://${HOST}:${PORT}`;
 
 config.devtool = 'source-map';
-config.debug = true;
-config.entry.unshift(`webpack-dev-server/client?${ADDRESS}`, 'webpack/hot/dev-server');
-config.plugins = config.plugins.concat(new webpack.HotModuleReplacementPlugin());
+config.entry.unshift(
+  `webpack-dev-server/client?${ADDRESS}`,
+  'webpack/hot/dev-server'
+);
+config.plugins = config.plugins.concat(
+  new webpack.HotModuleReplacementPlugin()
+);
 
 // Start a webpack-dev-server
 new WebpackDevServer(webpack(config), {

@@ -1,11 +1,11 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var loaders = [
+var rules = [
   {
     test: /\.js?$/,
     exclude: /node_modules/,
-    loader: 'babel',
+    loader: 'babel-loader',
     query: { presets: ['es2015', 'stage-0'], plugins: [] }
   }
 ];
@@ -23,5 +23,12 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     })],
-  module: { loaders: loaders }
+  module: { rules: rules },
+  devServer: {
+    stats: {
+      colors: true
+    },
+    historyApiFallback: true,
+    hot: true
+  }
 };
