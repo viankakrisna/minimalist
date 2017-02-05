@@ -645,5 +645,4 @@ body {
   }
 }
 `;
-
 export default App;

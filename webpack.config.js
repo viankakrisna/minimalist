@@ -1,7 +1,7 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var rules = [
+const rules = [
   {
     test: /\.js?$/,
     exclude: /node_modules/,
@@ -26,12 +26,5 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     })],
-  module: { rules: rules },
-  devServer: {
-    stats: {
-      colors: true
-    },
-    historyApiFallback: true,
-    hot: true
-  }
+  module: { rules }
 };

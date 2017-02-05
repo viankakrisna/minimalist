@@ -22,7 +22,8 @@ new WebpackDevServer(webpack(config), {
     colors: true
   },
   historyApiFallback: true,
-  hot: true
+  hot: true,
+  overlay: true
 }).listen(PORT, HOST, console.error);
 
 switch (require('os').type()) {
