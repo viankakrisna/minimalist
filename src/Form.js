@@ -25,6 +25,7 @@ export default styled(function Form(props) {
     border-radius: 2px;
     margin-top: 1em;
     border: 0;
+    margin-bottom: 0;
   }
   & fieldset > div {
     margin-bottom: 0.5em
@@ -51,4 +52,3 @@ export default styled(function Form(props) {
     margin-top: 0;
   }
 `;
-

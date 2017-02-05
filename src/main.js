@@ -5,13 +5,22 @@ import { navigate } from './mutators';
 
 const root = document.createElement('div');
 
-subscribe(function render() {
+function render() {
   renderer(e(App), root, root.lastChild);
-});
+}
 
-setState(
-  navigate(global.location.hash ? global.location.hash.replace('#', '') : '/')
-);
+subscribe(render);
+
+function initialPath() {
+  if (require('./config').hashHistory) {
+    return global.location.hash ? global.location.hash.replace('#', '') : '/';
+  } else {
+    return global.location.pathname;
+  }
+}
+
+setState(navigate(initialPath()));
+
 global.addEventListener('scroll', () => {
   if (global.scrollY > 56 && !getState('scrolled')) {
     setState({ scrolled: true });
@@ -20,5 +29,9 @@ global.addEventListener('scroll', () => {
     setState({ scrolled: false });
   }
 });
-document.body.appendChild(root);
 
+global.addEventListener('popstate', function() {
+  setState(navigate(initialPath()));
+});
+
+document.body.appendChild(root);

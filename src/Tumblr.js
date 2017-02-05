@@ -1,6 +1,6 @@
-import { div, n, input, e, ul, li, img, h1 } from './elements';
+import { div, n, input, e, ul, li, img, h1, fieldset } from './elements';
 import Form from './Form';
-import { zoomIn } from './animation';
+import { cardMixin } from './mixins';
 import { colors } from './theme';
 import {
   tumblrSearch,
@@ -45,67 +45,67 @@ const TumblrMessage = styled(function TumblrMessage({ className }) {
       return 'transparent';
   }
 }};
-  transform: ${() =>
-  getState('tumblrMessage').message ? 'translateY(0)' : 'translateY(100%)'};
+  transform: ${() => getState('tumblrMessage').message ? 'translateY(0)' : 'translateY(100%)'};
 }
 `;
 
-function TumblrForm() {
+const TumblrForm = styled(function TumblrForm(props) {
   return e(
     Form,
-    n,
-    input({
-      placeholder: 'Search Tumblr',
-      name: 'query',
-      value: getState('tumblrSearchForm').query,
-      onInput: event =>
-        setState(
-          tumblrSearchFormChange({ [event.target.name]: event.target.value })
-        )
-    }),
-    e(
-      Button,
+    { className: props.className },
+    fieldset(
       {
-        bg: colors.blue.shade_700,
-        onClick: event =>
-          getState('tumblrSearchForm')
-            ? setState(tumblrSearch(getState('tumblrSearchForm')))
-            : setState(tumblrErrorMessage('You need to input your tumblr!'))
+        disabled: getState('tumblrSearchLoading')
       },
-      'Search Tumblr'
+      input({
+        placeholder: 'Search Tumblr',
+        name: 'query',
+        value: getState('tumblrSearchForm').query,
+        onInput: event =>
+          setState(tumblrSearchFormChange({ [event.target.name]: event.target.value }))
+      }),
+      e(
+        Button,
+        {
+          bg: colors.blue.shade_700,
+          disabled: getState('tumblrSearchLoading'),
+          onClick: event =>
+            getState('tumblrSearchForm')
+              ? setState(tumblrSearch(getState('tumblrSearchForm')))
+              : setState(tumblrErrorMessage('You need to input your tumblr!'))
+        },
+        'Search Tumblr'
+      )
     )
   );
-}
+})`
+ & fieldset {
+  margin: 0;
+ }
+`;
 
 const TumblrList = styled(function TumblrList({ className }) {
   return ul(
     { className },
-    getState('tumblrList').map(
-      tumblr =>
-        li(
-          { key: tumblr.id },
-          div(
-            n,
-            tumblr.photos
-              ? img({ src: tumblr.photos[0].original_size.url })
-              : null,
-            tumblr.body
-          )
-        )
-    )
+    getState('tumblrList').map(tumblr =>
+      li(
+        { key: tumblr.id },
+        div(n, tumblr.photos ? img({ src: tumblr.photos[0].original_size.url }) : null, tumblr.body)
+      ))
   );
 })`
-  & button {
-      float: right;
-    }
-  & li {
-    transform-origin: left top;
-    animation: ${zoomIn} 250ms;
-  }
-  & li:after {
-    content: '';
+  & {
     display: block;
-    clear: both;
+    margin: 0;
+    padding: 0;
+  }
+  & li {
+    ${cardMixin}
+  }
+
+  & img {
+    margin: 0 auto 1em;
+    display: block;
   }
 `;
 
@@ -113,9 +113,9 @@ const Tumblr = props =>
   div(
     { className: 'page' },
     div({ className: 'page-header' }, h1(n, 'Tumblr Example')),
-    div({ className: 'page-content' }, e(TumblrForm), e(TumblrList)),
+    div({ className: 'page-content' }, e(TumblrForm)),
+    e(TumblrList),
     e(TumblrMessage)
   );
 
 export default Tumblr;
-

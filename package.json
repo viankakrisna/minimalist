@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "description": "Project boilerplate",
   "scripts": {
-    "start": "webpack-dev-server --progress",
+    "start": "node webpack.server",
     "build": "webpack --progress -p",
     "watch": "webpack --watch --progress -p",
     "deploy": "webpack --progress -p && cp -rf build/* . && git commit -am \"$m\" && git push origin master" 
   },
   "dependencies": {
-    "google-material-color-palette-json": "1.1.2",
-    "preact": "7.2.0",
-    "typography": "0.15.8"
+    "preact": "7.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",

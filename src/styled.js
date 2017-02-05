@@ -23,10 +23,7 @@ export default function styled(Component) {
   return memoize(function createStyled(css, ...exp) {
     //return a named function, easier to debug in the stack trace
     return function styledComponent(props) {
-      const interpolatedCSS = css.raw.reduce(
-        createRawCSSReducer(exp, props),
-        ''
-      );
+      const interpolatedCSS = css.raw.reduce(createRawCSSReducer(exp, props), '');
 
       //use the component function name, else just use styled prefix
       const className = [
@@ -37,15 +34,17 @@ export default function styled(Component) {
 
       renderStyle(className, interpolatedCSS);
 
-      return e(Component, Object.assign({}, props, { className }));
+      return e(Component, Object.assign({}, props, {
+          className: [className, props.className].filter(Boolean).join(' ')
+        }));
     };
   });
 }
 
 export function keyframes(css) {
   const interpolated = css.raw.reduce(createRawCSSReducer());
-  const hash = [ 'keyframes', hashCode(interpolated) ].join('_');
-  const style = [ '@keyframes ', hash, '{', interpolated, '}' ].join('');
+  const hash = ['keyframes', hashCode(interpolated)].join('_');
+  const style = ['@keyframes ', hash, '{', interpolated, '}'].join('');
   renderStyle(hash, style);
   return hash;
 }
@@ -60,7 +59,7 @@ function renderStyle(className, interpolatedCSS) {
     style.id = className;
 
     //append it!
-    document.head.appendChild(style);
+    document.head.insertBefore(style, document.head.firstChild);
     appended.push(className);
   }
 }
@@ -87,4 +86,3 @@ function memoize(func) {
     else return memo[args] = func.apply(this, args);
   };
 }
-

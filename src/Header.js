@@ -1,9 +1,10 @@
 import { e, i, div } from './elements';
 import { menuOpen } from './mutators';
 import styled from './styled';
-import { colors } from './theme';
+import theme from './theme';
 import { getState, setState } from './state';
 import Link from './Link';
+
 function Header(props) {
   return div(
     { className: props.className },
@@ -25,7 +26,7 @@ function Header(props) {
     )
   );
 }
-const headerHeight = () => '3.5em';
+
 export default styled(Header)`
   & {
     position: fixed;
@@ -33,14 +34,12 @@ export default styled(Header)`
     left: 0;
     right: 0;
     transition: 250ms;
-    background: ${colors.blue.shade_800};
-    height: ${headerHeight};
+    background: ${theme.headerBg};
+    height: ${theme.headerHeight};
     line-height: 1.5em;
     z-index: 10;
     ${() =>
-  getState('scrolled')
-    ? 'box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);'
-    : ''}
+  getState('scrolled') ? 'box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);' : ''}
     }
   & .logo {
     float: left;
@@ -82,7 +81,7 @@ export default styled(Header)`
       left: 0;
       right: 0;
       bottom: 0;
-      height: ${headerHeight};
+      height: ${theme.headerHeight};
       padding: 1em;
       text-align: center;
       margin: auto;
@@ -103,7 +102,7 @@ export default styled(Header)`
     }
     & .menu {
       position: fixed;
-      top: ${headerHeight};
+      top: ${theme.headerHeight};
       left: 0;
       bottom: 0; 
       transition: 250ms;
@@ -120,7 +119,7 @@ export default styled(Header)`
       background: rgba(0,0,0,0.5);
       position: fixed;
       transition: 250ms;
-      top: ${headerHeight};
+      top: ${theme.headerHeight};
       left: 0;
       right: 0;
       bottom: 0;
@@ -129,4 +128,3 @@ export default styled(Header)`
     }
   }
 `;
-

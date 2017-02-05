@@ -4,4 +4,3 @@ const Match = props => {
   return show ? props.children[0] : null;
 };
 export default Match;
-
