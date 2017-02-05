@@ -1,1 +1,1 @@
-export const hashHistory = false;
+export const hashHistory = true;
