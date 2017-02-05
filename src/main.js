@@ -33,5 +33,7 @@ global.addEventListener('scroll', () => {
 global.addEventListener('popstate', function() {
   setState(navigate(initialPath()));
 });
-
+global.addEventListener('hashchange', function() {
+  global.scrollBy(0, 0);
+});
 document.body.appendChild(root);
