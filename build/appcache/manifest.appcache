@@ -1,0 +1,10 @@
+CACHE MANIFEST
+#ver:2/6/2017, 4:50:33 AM
+#plugin:4.6.1
+
+CACHE:
+./main.js
+./
+
+NETWORK:
+*
