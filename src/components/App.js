@@ -14,16 +14,16 @@ import { cardMixin } from '../lib/mixins';
 import { zoomIn } from '../lib/animation';
 
 const App = styled(function App(props) {
-    return div(
-        { className: props.className },
-        e(Header),
-        e(Match, { pathname: '/' }, e(Home)),
-        e(Match, { pathname: '/counter' }, e(Counter)),
-        e(Match, { pathname: '/login' }, e(Login)),
-        e(Match, { pathname: '/tumblr' }, e(Tumblr)),
-        e(Match, { pathname: '/register' }, e(Register)),
-        e(Match, { pathname: '/todo' }, e(Todo))
-    );
+  return div(
+    { className: props.className },
+    e(Header),
+    e(Match, { pathname: '/' }, e(Home)),
+    e(Match, { pathname: '/counter' }, e(Counter)),
+    e(Match, { pathname: '/login' }, e(Login)),
+    e(Match, { pathname: '/tumblr' }, e(Tumblr)),
+    e(Match, { pathname: '/register' }, e(Register)),
+    e(Match, { pathname: '/todo' }, e(Todo))
+  );
 })`
 
 * {

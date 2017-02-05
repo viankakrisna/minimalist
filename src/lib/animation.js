@@ -1,4 +1,5 @@
 import { keyframes } from './styled';
+
 export const zoomIn = keyframes`
   0% {
     opacity: 0;
@@ -21,4 +22,3 @@ export const slideInUp = keyframes`
     transform: translateY(0);
   }
 `;
-

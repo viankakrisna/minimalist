@@ -42,9 +42,10 @@ export default styled(Header)`
     height: ${theme.headerHeight};
     line-height: 1.5em;
     z-index: 10;
-    ${getState('scrolled')
-  ? 'box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);'
-  : ''}
+    ${() =>
+  getState('scrolled')
+    ? 'box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);'
+    : ''}
     }
   & .logo {
     float: left;
