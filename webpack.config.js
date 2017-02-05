@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 const rules = [
   {
@@ -25,6 +26,6 @@ module.exports = {
       template: path.resolve('src', 'index.html'),
       inject: 'body',
       filename: 'index.html'
-    })],
+    }), new OfflinePlugin()],
   module: { rules }
 };

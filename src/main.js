@@ -4,6 +4,7 @@ import { subscribe, setState, getState } from './lib/state';
 import { navigate } from './lib/mutators';
 import { hashHistory } from './lib/config';
 
+require('offline-plugin/runtime').install();
 export default function main() {
   const root = global.document.createElement('div');
 
