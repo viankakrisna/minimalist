@@ -4,8 +4,8 @@
   "description": "Project boilerplate",
   "scripts": {
     "start": "node webpack.server",
-    "build": "webpack --progress -p",
-    "watch": "webpack --watch --progress --optimize-minimize",
+    "build": "webpack --progress --optimize-minimize",
+    "watch": "webpack --progress --optimize-minimize --watch",
     "deploy": "webpack --progress --optimize-minimize && cp -rf build/* . && git add --all && git commit -am \"$m\" && git push origin master" 
   },
   "dependencies": {
