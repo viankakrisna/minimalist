@@ -6,12 +6,15 @@ var rules = [
     test: /\.js?$/,
     exclude: /node_modules/,
     loader: 'babel-loader',
-    query: { presets: ['es2015', 'stage-0'], plugins: [] }
+    query: {
+      presets: [['es2015', { modules: false }], 'stage-0'],
+      plugins: []
+    }
   }
 ];
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: [path.resolve('src', 'main.js')],
   output: {
     path: path.resolve('build'),

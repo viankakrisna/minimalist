@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node webpack.server",
     "build": "webpack --progress -p",
-    "watch": "webpack --watch --progress -p",
-    "deploy": "webpack --progress -p && cp -rf build/* . && git commit -am \"$m\" && git push origin master" 
+    "watch": "webpack --watch --progress --optimize-minimize",
+    "deploy": "webpack --progress --optimize-minimize && cp -rf build/* . && git commit -am \"$m\" && git push origin master" 
   },
   "dependencies": {
     "preact": "7.2.0"
