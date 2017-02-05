@@ -23,10 +23,10 @@ setState(navigate(initialPath()));
 
 global.addEventListener('scroll', () => {
   if (global.scrollY > 56 && !getState('scrolled')) {
-    setState({ scrolled: true });
+    return setState({ scrolled: true });
   }
   if (global.scrollY < 56 && getState('scrolled')) {
-    setState({ scrolled: false });
+    return setState({ scrolled: false });
   }
 });
 

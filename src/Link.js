@@ -1,12 +1,13 @@
-import { a, e } from './elements';
+import { a } from './elements';
 import { navigate } from './mutators';
 import { getState, setState } from './state';
+
 function Link(props) {
   return a({
     className: [
       props.className,
-      getState().location.pathname === props.to ||
-        getState().location.pathname === props.to.pathname
+      getState('location').pathname === props.to ||
+        getState('location').pathname === props.to.pathname
         ? 'active'
         : ''
     ]
@@ -20,5 +21,5 @@ function Link(props) {
     ...props
   });
 }
-export default Link;
 
+export default Link;
