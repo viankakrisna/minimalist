@@ -1,15 +1,15 @@
-import { e, i, div } from '../lib/elements';
-import { menuOpen } from '../lib/mutators';
-import { getState, setState } from '../lib/state';
-import styled from '../lib/styled';
-import theme from '../lib/theme';
-import Link from '../components/Link';
+import { e, i, div } from "../lib/elements";
+import { menuOpen } from "../lib/mutators";
+import { getState, setState } from "../lib/state";
+import styled from "../lib/styled";
+import theme from "../lib/theme";
+import Link from "../components/Link";
 
 const menus = [
-  { to: '/', name: 'Home' },
-  { to: '/counter', name: 'Counter' },
-  { to: '/todo', name: 'Todo' },
-  { to: '/tumblr', name: 'Tumblr' }
+  { to: "/", name: "Home" },
+  { to: "/counter", name: "Counter" },
+  { to: "/todo", name: "Todo" },
+  { to: "/tumblr", name: "Tumblr" }
 ];
 
 function Header(props) {
@@ -17,15 +17,15 @@ function Header(props) {
     { className: props.className },
     i(
       {
-        className: 'material-icons menu-toggle',
-        onClick: () => setState(menuOpen(!getState('menuOpen')))
+        className: "material-icons menu-toggle",
+        onClick: () => setState(menuOpen(!getState("menuOpen")))
       },
-      'menu'
+      "menu"
     ),
-    e(Link, { className: 'logo', to: '/' }, 'Minimalist'),
-    div({ className: 'overlay', onClick: () => setState(menuOpen(false)) }),
+    e(Link, { className: "logo", to: "/" }, "Minimalist"),
+    div({ className: "overlay", onClick: () => setState(menuOpen(false)) }),
     div(
-      { className: 'menu' },
+      { className: "menu" },
       menus.map(menu => e(Link, { to: menu.to, key: menu.to }, menu.name))
     )
   );
@@ -43,9 +43,9 @@ export default styled(Header)`
     line-height: 1.5em;
     z-index: 10;
     ${() =>
-  getState('scrolled')
-    ? 'box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);'
-    : ''}
+  getState("scrolled")
+    ? "box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);"
+    : ""}
     }
   & .logo {
     float: left;
@@ -115,7 +115,7 @@ export default styled(Header)`
       width: 220px;
       background: white;
       border-right: 1px solid lightgrey;
-      transform: translateX(${props => getState('menuOpen') ? '0' : '-100%'});
+      transform: translateX(${props => getState("menuOpen") ? "0" : "-100%"});
     }
     & .menu a {
       display: block;
@@ -129,8 +129,8 @@ export default styled(Header)`
       left: 0;
       right: 0;
       bottom: 0;
-      opacity: ${props => getState('menuOpen') ? '1' : '0'};
-      pointer-events: ${props => getState('menuOpen') ? 'visible' : 'none'}
+      opacity: ${props => getState("menuOpen") ? "1" : "0"};
+      pointer-events: ${props => getState("menuOpen") ? "visible" : "none"}
     }
   }
 `;

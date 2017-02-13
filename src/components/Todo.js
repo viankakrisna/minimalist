@@ -1,6 +1,6 @@
-import { div, n, input, e, ul, li, h1 } from '../lib/elements';
-import { zoomIn } from '../lib/animation';
-import { colors } from '../lib/theme';
+import { div, n, input, e, ul, li, h1 } from "../lib/elements";
+import { zoomIn } from "../lib/animation";
+import { colors } from "../lib/theme";
 import {
   addTodo,
   todoErrorMessage,
@@ -9,15 +9,19 @@ import {
   completeTodo,
   destroyTodo,
   currentTodoInput
-} from '../lib/mutators';
-import { setState, getState } from '../lib/state';
-import styled from '../lib/styled';
-import Form from '../components/Form';
-import Button from '../components/Button';
+} from "../lib/mutators";
+import { setState, getState } from "../lib/state";
+import styled from "../lib/styled";
+import Form from "../components/Form";
+import Button from "../components/Button";
 
 const TodoMessage = styled(function TodoMessage({ className }) {
-  when(getState('todoMessage').message, () => setState(clearTodoMessage()), 1500);
-  return div({ className }, getState('todoMessage').message);
+  when(
+    getState("todoMessage").message,
+    () => setState(clearTodoMessage()),
+    1500
+  );
+  return div({ className }, getState("todoMessage").message);
 })`
 & {
   text-align: center;
@@ -29,16 +33,17 @@ const TodoMessage = styled(function TodoMessage({ className }) {
   padding: 1em;
   color: white;
     background: ${() => {
-  switch (getState('todoMessage').type) {
-    case 'success':
+  switch (getState("todoMessage").type) {
+    case "success":
       return colors.green.shade_700;
-    case 'error':
+    case "error":
       return colors.red.shade_700;
     default:
-      return 'transparent';
+      return "transparent";
   }
 }};
-  transform: ${() => getState('todoMessage').message ? 'translateY(0)' : 'translateY(100%)'};
+  transform: ${() =>
+  getState("todoMessage").message ? "translateY(0)" : "translateY(100%)"};
 }
 `;
 
@@ -47,8 +52,8 @@ function TodoForm() {
     Form,
     n,
     input({
-      placeholder: 'Add Todo',
-      value: getState('currentTodoInput'),
+      placeholder: "Add Todo",
+      value: getState("currentTodoInput"),
       onInput: event => setState(currentTodoInput(event.target.value))
     }),
     // e(
@@ -73,20 +78,27 @@ function TodoForm() {
       Button,
       {
         bg: colors.blue.shade_700,
-        onClick: event => getState('currentTodoInput') ? setState(addTodo({
-                name: getState('currentTodoInput'),
+        onClick: event => getState("currentTodoInput")
+          ? setState(
+              addTodo({
+                name: getState("currentTodoInput"),
                 id: `todo_${Date.now()}`
-              })).then(state => setState(todoSuccessMessage('Sucessfully add todo!'))) : setState(todoErrorMessage('You need to input your todo!'))
+              })
+            ).then(state =>
+              setState(todoSuccessMessage("Sucessfully add todo!")))
+          : setState(todoErrorMessage("You need to input your todo!"))
       },
-      'Add Todo'
+      "Add Todo"
     )
   );
 }
 
 const TodoList = styled(function TodoList({ className }) {
-  return ul({ className }, getState('todos').map(todo => li(
+  return ul(
+    { className },
+    getState("todos").map(todo => li(
       { key: todo.id },
-      todo.complete ? e('del', n, todo.name) : todo.name,
+      todo.complete ? e("del", n, todo.name) : todo.name,
       e(
         Button,
         {
@@ -94,9 +106,9 @@ const TodoList = styled(function TodoList({ className }) {
           bg: colors.red.shade_700,
           onClick: event =>
             setState(destroyTodo(todo.id)).then(state =>
-              setState(todoSuccessMessage('Sucessfully delete todo!')))
+              setState(todoSuccessMessage("Sucessfully delete todo!")))
         },
-        'Destroy Todo'
+        "Destroy Todo"
       ),
       !todo.complete &&
         e(
@@ -106,11 +118,12 @@ const TodoList = styled(function TodoList({ className }) {
             bg: colors.blue.shade_700,
             onClick: event =>
               setState(completeTodo(todo.id)).then(state =>
-                setState(todoSuccessMessage('Sucessfully complete todo!')))
+                setState(todoSuccessMessage("Sucessfully complete todo!")))
           },
-          'Complete Todo'
+          "Complete Todo"
         )
-    )));
+    ))
+  );
 })`
   & button {
       float: right;
@@ -128,9 +141,9 @@ const TodoList = styled(function TodoList({ className }) {
 
 const Todo = props =>
   div(
-    { className: 'page' },
-    div({ className: 'page-header' }, h1(n, 'Todo Example')),
-    div({ className: 'page-content' }, e(TodoForm), e(TodoList)),
+    { className: "page" },
+    div({ className: "page-header" }, h1(n, "Todo Example")),
+    div({ className: "page-content" }, e(TodoForm), e(TodoList)),
     e(TodoMessage)
   );
 

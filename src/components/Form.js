@@ -1,13 +1,13 @@
-import { form } from '../lib/elements';
-import { colors } from '../lib/theme';
-import styled from '../lib/styled';
+import { form } from "../lib/elements";
+import { colors } from "../lib/theme";
+import styled from "../lib/styled";
 
 export default styled(function Form(props) {
   return form({
     ...props,
     onSubmit: event => {
       event.preventDefault();
-      if (typeof props.onSubmit === 'function') {
+      if (typeof props.onSubmit === "function") {
         props.onSubmit();
       }
     }
@@ -15,7 +15,7 @@ export default styled(function Form(props) {
 })`
   & {
     max-width: 100%;
-    width: ${props => props.small ? '320px' : '100%'};
+    width: ${props => props.small ? "320px" : "100%"};
     margin-left: auto;
     margin-right: auto;
   }

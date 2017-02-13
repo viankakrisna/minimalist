@@ -1,23 +1,23 @@
-import Form from '../components/Form';
-import { div, n, input, e, ul, li, img, h1, fieldset } from '../lib/elements';
-import { cardMixin } from '../lib/mixins';
-import { colors } from '../lib/theme';
-import { setState, getState } from '../lib/state';
-import styled from '../lib/styled';
+import Form from "../components/Form";
+import { div, n, input, e, ul, li, img, h1, fieldset } from "../lib/elements";
+import { cardMixin } from "../lib/mixins";
+import { colors } from "../lib/theme";
+import { setState, getState } from "../lib/state";
+import styled from "../lib/styled";
 import {
   tumblrSearch,
   tumblrErrorMessage,
   tumblrMessageClear,
   tumblrSearchFormChange
-} from '../lib/mutators';
-import Button from '../components/Button';
+} from "../lib/mutators";
+import Button from "../components/Button";
 
 const TumblrMessage = styled(function TumblrMessage({ className }) {
-  const m = getState('tumblrMessage');
+  const m = getState("tumblrMessage");
   if (m.message) {
     setTimeout(
       () => {
-        if (getState('tumblrMessage')) {
+        if (getState("tumblrMessage")) {
           setState(tumblrMessageClear());
         }
       },
@@ -36,16 +36,17 @@ const TumblrMessage = styled(function TumblrMessage({ className }) {
   padding: 1em;
   color: white;
     background: ${() => {
-  switch (getState('tumblrMessage').type) {
-    case 'success':
+  switch (getState("tumblrMessage").type) {
+    case "success":
       return colors.green.shade_700;
-    case 'error':
+    case "error":
       return colors.red.shade_700;
     default:
-      return 'transparent';
+      return "transparent";
   }
 }};
-  transform: ${() => getState('tumblrMessage').message ? 'translateY(0)' : 'translateY(100%)'};
+  transform: ${() =>
+  getState("tumblrMessage").message ? "translateY(0)" : "translateY(100%)"};
 }
 `;
 
@@ -55,26 +56,28 @@ const TumblrForm = styled(function TumblrForm(props) {
     { className: props.className },
     fieldset(
       {
-        disabled: getState('tumblrSearchLoading')
+        disabled: getState("tumblrSearchLoading")
       },
       input({
-        placeholder: 'Search Tumblr',
-        name: 'query',
-        value: getState('tumblrSearchForm').query,
+        placeholder: "Search Tumblr",
+        name: "query",
+        value: getState("tumblrSearchForm").query,
         onInput: event =>
-          setState(tumblrSearchFormChange({ [event.target.name]: event.target.value }))
+          setState(
+            tumblrSearchFormChange({ [event.target.name]: event.target.value })
+          )
       }),
       e(
         Button,
         {
           bg: colors.blue.shade_700,
-          disabled: getState('tumblrSearchLoading'),
+          disabled: getState("tumblrSearchLoading"),
           onClick: event =>
-            getState('tumblrSearchForm').query.length
-              ? setState(tumblrSearch(getState('tumblrSearchForm')))
-              : setState(tumblrErrorMessage('You need to input your tumblr!'))
+            getState("tumblrSearchForm").query.length
+              ? setState(tumblrSearch(getState("tumblrSearchForm")))
+              : setState(tumblrErrorMessage("You need to input your tumblr!"))
         },
-        'Search Tumblr'
+        "Search Tumblr"
       )
     )
   );
@@ -89,7 +92,8 @@ function mapTumblrList(tumblr) {
     ? li(
         { key: tumblr.id },
         Array.isArray(tumblr.photos)
-          ? tumblr.photos.map(photo => img({ key: photo.id, src: photo.original_size.url }))
+          ? tumblr.photos.map(photo =>
+              img({ key: photo.id, src: photo.original_size.url }))
           : null,
         tumblr.body
       )
@@ -97,7 +101,10 @@ function mapTumblrList(tumblr) {
 }
 
 const TumblrList = styled(function TumblrList({ className }) {
-  return ul({ className }, getState('tumblrList').map(mapTumblrList).filter(Boolean));
+  return ul(
+    { className },
+    getState("tumblrList").map(mapTumblrList).filter(Boolean)
+  );
 })`
   & {
     display: block;
@@ -116,9 +123,9 @@ const TumblrList = styled(function TumblrList({ className }) {
 
 const Tumblr = props =>
   div(
-    { className: 'page' },
-    div({ className: 'page-header' }, h1(n, 'Tumblr Example')),
-    div({ className: 'page-content' }, e(TumblrForm)),
+    { className: "page" },
+    div({ className: "page-header" }, h1(n, "Tumblr Example")),
+    div({ className: "page-content" }, e(TumblrForm)),
     e(TumblrList),
     e(TumblrMessage)
   );
