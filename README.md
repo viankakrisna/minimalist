@@ -1,5 +1,7 @@
 # Minimalist
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/viankakrisna/minimalist.svg)](https://greenkeeper.io/)
+
 This is a POC for a minimal reimplementation of popular react ecosystem libaries. (without JSX!)
 
 The list of reimplemented libaries:
