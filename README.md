@@ -15,7 +15,7 @@ The one thing you really need to see in this app is ./lib.js, that's where we cr
 
 ## Why?
 
-Just for fun! Also, I'm getting tired to see the list of dependencies of my project. The dependencies used in this project are non critical: typography.js, typography-theme-bootstrap, preact, and material-design-icons Use it if you want to, and discuss with me if you find bugs.
+Just for fun! Also, I'm getting tired to see the list of dependencies of my project. Use it if you want to, and discuss with me if you find bugs.
 
 ## Start
 
