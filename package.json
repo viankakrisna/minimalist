@@ -9,7 +9,7 @@
     "deploy": "webpack --progress --optimize-minimize && cp -rf build/* . && git add --all && git commit -am \"$m\" && git push origin master"
   },
   "dependencies": {
-    "offline-plugin": "^4.6.1",
+    "offline-plugin": "^4.8.4",
     "preact": "8.1.0"
   },
   "devDependencies": {
