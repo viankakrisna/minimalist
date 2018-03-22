@@ -20,7 +20,7 @@
     "eslint": "^4.1.0",
     "eslint-config-prettier": "^2.0.0",
     "eslint-loader": "^1.6.1",
-    "html-webpack-plugin": "2.29.0",
+    "html-webpack-plugin": "3.0.8",
     "pwa-manifest-webpack-plugin": "^1.0.1",
     "webpack": "3.0.0",
     "webpack-dev-server": "^2.3.0"
