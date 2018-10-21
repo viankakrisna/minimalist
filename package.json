@@ -22,7 +22,7 @@
     "eslint-loader": "^1.6.1",
     "html-webpack-plugin": "2.29.0",
     "pwa-manifest-webpack-plugin": "^1.0.1",
-    "webpack": "3.0.0",
+    "webpack": "4.22.0",
     "webpack-dev-server": "^2.3.0"
   },
   "author": "Ade Viankakrisna Fadlil",
