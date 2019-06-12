@@ -9,7 +9,7 @@
     "deploy": "webpack --progress --optimize-minimize && cp -rf build/* . && git add --all && git commit -am \"$m\" && git push origin master"
   },
   "dependencies": {
-    "offline-plugin": "^4.6.1",
+    "offline-plugin": "^5.0.7",
     "preact": "8.2.0"
   },
   "devDependencies": {
@@ -20,10 +20,11 @@
     "eslint": "^4.1.0",
     "eslint-config-prettier": "^2.0.0",
     "eslint-loader": "^1.6.1",
-    "html-webpack-plugin": "2.29.0",
-    "pwa-manifest-webpack-plugin": "^1.0.1",
-    "webpack": "3.0.0",
-    "webpack-dev-server": "^2.3.0"
+    "html-webpack-plugin": "^3.2.0",
+    "opn": "^6.0.0",
+    "pwa-manifest-webpack-plugin": "^1.0.5",
+    "webpack": "^4.33.0",
+    "webpack-dev-server": "^3.7.1"
   },
   "author": "Ade Viankakrisna Fadlil",
   "license": "ISC"
