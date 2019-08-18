@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "offline-plugin": "^4.6.1",
-    "preact": "8.2.0"
+    "preact": "8.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
