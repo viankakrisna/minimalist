@@ -19,7 +19,7 @@
     "babel-preset-stage-0": "6.24.1",
     "eslint": "^4.1.0",
     "eslint-config-prettier": "^2.0.0",
-    "eslint-loader": "^1.6.1",
+    "eslint-loader": "^3.0.1",
     "html-webpack-plugin": "2.29.0",
     "pwa-manifest-webpack-plugin": "^1.0.1",
     "webpack": "3.0.0",
