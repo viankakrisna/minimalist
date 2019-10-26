@@ -18,7 +18,7 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "eslint": "^4.1.0",
-    "eslint-config-prettier": "^2.0.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-loader": "^1.6.1",
     "html-webpack-plugin": "2.29.0",
     "pwa-manifest-webpack-plugin": "^1.0.1",
