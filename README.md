@@ -1,4 +1,3 @@
-# Initial page
+# Minimalist
 
-testing blablabla
-
+A minimalist re-implementation of popular react ecosystem libraries
